@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns="https://www.huzhan.com/ishop27106/code/" versionCode="0.8,1.0">
+	<application setting="true">
+		<name><![CDATA[新-微信淘宝客]]></name>
+		<identifie><![CDATA[tiger_newhu]]></identifie>
+		<version><![CDATA[6.0.35]]></version>
+		<type><![CDATA[activity]]></type>
+		<ability><![CDATA[新-微信淘宝客]]></ability>
+		<description><![CDATA[新-微信淘宝客]]></description>
+		<author><![CDATA[博雅科技QQ:1661316352]]></author>
+		<url><![CDATA[https://www.huzhan.com/ishop27106/code/]]></url>
+	</application>
+	<platform>
+		<subscribes>
+			<message type="subscribe" />
+			<message type="unsubscribe" />
+		</subscribes>
+		<handles>
+			<message type="image" />
+			<message type="voice" />
+			<message type="video" />
+			<message type="shortvideo" />
+			<message type="location" />
+			<message type="link" />
+			<message type="subscribe" />
+			<message type="qr" />
+			<message type="trace" />
+			<message type="click" />
+			<message type="merchant_order" />
+			<message type="text" />
+		</handles>
+		<rule embed="true" />
+		<card embed="false" />
+        <supports>
+			<item type="app" />
+			<item type="account" />
+        </supports>
+	</platform>
+	<bindings>
+		<cover>
+			<entry title="直播入口" do="live" state="" direct="false" />
+			<entry title="积分排行榜" do="Ranking" state="" direct="false" />
+			<entry title="我的积分" do="Records" state="" direct="false" />
+			<entry title="积分商城" do="Goods" state="" direct="false" />
+			<entry title="兑吧积分商城" do="Duibagoods" state="" direct="false" />
+			<entry title="淘客商城" do="index" state="" direct="false" />
+			<entry title="会员中心" do="member" state="" direct="false" />
+			<entry title="晒单广场" do="sdindex" state="" direct="false" />
+		</cover>
+		<menu>
+			<entry title="后台入口" do="index" state="" direct="false" />
+		</menu>
+	</bindings>
+	<permissions>
+	</permissions>
+	<install><![CDATA[install.php]]></install>
+	<uninstall><![CDATA[uninstall.php]]></uninstall>
+	<upgrade><![CDATA[upgrade.php]]></upgrade>
+</manifest>

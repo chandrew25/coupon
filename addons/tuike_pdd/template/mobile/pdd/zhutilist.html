@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+    <meta name="renderer" content="webkit" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no" />
+    <meta name="format-detection" content="telephone=no" />
+
+    <title>{$title}-拼多多</title>
+    <meta name="description" content="{$title}" />
+    <meta name="keywords" content="{$title}" />
+<link rel="stylesheet" href="{$_W['siteroot']}addons/tiger_newhu/template/mobile/tbgoods/style88/css/style.css" />
+ <link rel="stylesheet" href="{$_W['siteroot']}addons/tiger_newhu/template/mobile/tbgoods/style88/css/ul-quan1.css">
+ 
+    <link rel="stylesheet" href="{$_W['siteroot']}addons/tiger_newhu/template/mobile/qtz/css/m-cui.css">
+    <link rel="stylesheet" href="{$_W['siteroot']}addons/tiger_newhu/template/mobile/qtz/css/m-lib.css" />
+
+<script src="{$_W['siteroot']}addons/tiger_newhu/template/mobile/cqlist/js/jquery-1.7.2.min.js"></script>
+    <script src="{$_W['siteroot']}addons/tiger_newhu/template/mobile/qtz/js/lib.js"></script>
+</head>
+<body style="margin:0 auto;">
+
+    <div class="slot-ban" id="top">
+        <a href=""><img src="{$pic}" alt=""></a>
+    </div>
+
+    <div class="slot-tabs">
+        <div class="header-nav" style="padding-right:0;padding-bottom: 6px; padding-top: 6px;">
+            <div class="t_title">{$title}</div><div class="t_sum">{$sum}款</div>
+        </div>
+    </div>
+<style>
+	.header-nav .t_title{float: left;margin-left: 3%;}
+	.header-nav .t_sum{float: right;margin-right: 3%;border: 1px #ff4201 solid;border-radius: 30px;padding: 0 10px;color: #ff4201;height: 30px;
+    line-height: 30px;}
+</style>
+
+    <div class="slot-list" id="table" style="background: #f1f1f1; padding-top:4px;">
+			 
+			<ul class="ul-quan1" id="list">
+                <!--<li>
+                    <div class="con">
+                        <a href="">
+                            <div class="pic">
+                                <img src="images/hp7.jpg" alt="">
+                                <div class="tips">奖152</div>
+                            </div>
+                            <div class="txt">
+                                <h3 class="tit">
+                                    <i class="g-tb"></i>
+                                    夏季纯棉宝宝连裤袜儿童婴儿裤袜…
+                                </h3>
+                                <div class="s1">销量：2155 <span>奖:1515</span></div>
+                                <div class="s2"><em>券后</em><span>12.9元</span></div>
+                            </div>
+                            <div class="quan">
+                                <div class="q-con">
+                                    <div class="s1">优惠券</div>
+                                    <div class="s2">1000元</div>
+                                    <div class="s3">领券购买</div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </li>-->
+
+            </ul>
+				
+    </div>
+
+
+    <div class="pop-bg"></div>
+
+    <a href="#top" class="to-top"></a>
+	
+	{template 'pdd/public_bottom'}
+	<link href="{$_W['siteroot']}addons/tiger_newhu/template/mobile/tbgoods/style99/js/layui/css/layui.css" rel="stylesheet">
+	<script src="{$_W['siteroot']}addons/tiger_newhu/template/mobile/tbgoods/style99/js/layui/layui.js" charset="utf-8"></script>
+	
+	<script type="text/javascript">
+		var  limit=1;
+		function classtype(a){
+			sort_type=a;
+			limit=1;
+			//alert(MaterialId);
+			$("#list").html("");
+						;!function(){
+							layui.use('flow', function(){
+								var $ = layui.jquery;
+								var flow = layui.flow;		
+													
+				
+			
+								// alert(tzurl);
+								flow.load({
+									elem: '#table'
+									,end: '本场次商品已经加载完毕啦 ￣O￣)ノ！'
+									,done: function(page, next){
+										var lis =[];
+										//var dltype="{$zxshare['dltype']}";
+										page=limit;
+										limit++;
+										
+										//console.log(page);
+										
+										var content='';
+										$.get("{php echo $this->createMobileUrl('zhutilist',array('op'=>1))}&theme_id={$theme_id}", function(res){
+										
+										res=JSON.parse(res);
+										//console.log("{php echo $this->createMobileUrl('zhutilist',array('op'=>1))}&theme_id="+theme_id); 	
+											
+											console.log(res);
+											layui.each(res.data, function(index, item){
+												
+												content +='<li>';
+															content +='<div class="con">';
+																	content +='<a href="{php echo $this->createMobileUrl("pddview")}&itemid='+item.itemid+'">';
+																			content +='<div class="pic">';
+																					content +='<img src="'+item.itempic+'" alt="">';
+																					
+																					
+																			content +='</div>';
+																			content +='<div class="txt">';
+																					content +='<h3 class="tit">';
+//																							content +='<i class="g-tb"></i> ';
+																							content +=item.itemtitle+'…';
+																					content +='</h3>';
+																					content +='<div class="s1">销量：'+item.itemsale+' <span style="padding-left:10px;color:#ff0000">自购奖:'+item.rate+'</span></div>';
+																					content +='<div class="s2"><em>券后</em><span style="font-weight: 700;">'+item.itemendprice+'元</span></div>';
+																			content +='</div>';
+																			content +='<div class="quan">';
+																					content +='<div class="q-con" style="margin-top:20px;">';
+																					if(item.couponmoney){
+																						content +='<div class="s1">优惠券</div>';
+																						content +='<div class="s2">'+item.couponmoney+'元</div>';
+																						content +='<div class="s3">领券购买</div>';
+																					}else{
+																						content +='<div class="s1">去拼购</div>';
+//																						content +='<div class="s2">'+item.couponmoney+'元</div>';
+																						content +='<div class="s3" style="background: #ff5d45;">立即购买</div>';
+																					}
+																					
+																					content +='</div>';
+																			content +='</div>';
+																	content +='</a>';
+															content +='</div>';
+													content +='</li>';
+												
+//			
+											});
+											$("#list").append(content);
+											
+											//console.log("页"+page);
+											next(lis.join(''), page < item.pages);
+										});
+									}
+								});
+								
+								//按屏加载图片
+								  flow.lazyimg({
+									elem: '#table img'
+									//,scrollElem: '#LAY_demo3' //一般不用设置，此处只是演示需要。
+								  });
+							});
+						}();
+		}
+		
+	   $(document).delegate("a", "click", function (e) {
+	
+	        var url = $(this).attr("href");
+			//alert(url);
+	        if($("#list a").length == 0) return;
+	        window.localStorage.setItem("top", document.body.scrollTop);
+	        window.localStorage.setItem("html", $("#list").html());
+	        window.localStorage.setItem("url", window.location.href);
+				// alert( $("#list").html());
+			
+	    });
+		
+	
+	    if(window.localStorage.getItem("url") == window.location.href && window.localStorage.getItem("top") != "null") {
+			
+	      $("#list").html(window.localStorage.getItem("html"));
+	        document.body.scrollTop = window.localStorage.getItem("top");
+	        window.localStorage.setItem("top", "null");
+	        window.localStorage.setItem("html", "null");
+	        window.localStorage.setItem("url", "null");		
+			 	//alert(limit);
+			var le=$("#list a").length;
+			limit=1+Math.ceil(le/20);
+			 window.localStorage.setItem("limit", limit);
+			 window.localStorage.getItem("limit")
+	    }	
+	
+							
+							
+			    ;!function(){
+			        layui.use('flow', function(){
+			            var $ = layui.jquery;
+			            var flow = layui.flow;		
+											
+		
+  
+			           // alert(tzurl);
+			            flow.load({
+			                elem: '#table'
+	                        ,end: '本场次商品已经加载完毕啦 ￣O￣)ノ！'
+			                ,done: function(page, next){
+			                    var lis =[];
+			                    page=limit;
+								limit++;
+								
+	                            var content='';
+													
+			                   	 $.get("{php echo $this->createMobileUrl('zhutilist',array('op'=>1))}&theme_id={$theme_id}", function(res){
+			                    // alert(res); 
+								 res=JSON.parse(res);
+			                    	
+									 
+			                    	console.log(res);
+			                        layui.each(res.data, function(index, item){
+												content +='<li>';
+															content +='<div class="con">';
+																	content +='<a href="{php echo $this->createMobileUrl("pddview")}&itemid='+item.itemid+'">';
+																			content +='<div class="pic">';
+																					content +='<img src="'+item.itempic+'" alt="">';
+																					
+																					
+																			content +='</div>';
+																			content +='<div class="txt">';
+																					content +='<h3 class="tit">';
+//																							content +='<i class="g-tb"></i> ';
+																							content +=item.itemtitle+'…';
+																					content +='</h3>';
+																					content +='<div class="s1">销量：'+item.itemsale+' <span style="padding-left:10px;color:#ff0000">自购奖:'+item.rate+'</span></div>';
+																					content +='<div class="s2"><em>券后</em><span style="font-weight: 700;">'+item.itemendprice+'元</span></div>';
+																			content +='</div>';
+																			content +='<div class="quan">';
+																					content +='<div class="q-con" style="margin-top:20px;">';
+																					if(item.couponmoney){
+																						content +='<div class="s1">优惠券</div>';
+																						content +='<div class="s2">'+item.couponmoney+'元</div>';
+																						content +='<div class="s3">领券购买</div>';
+																					}else{
+																						content +='<div class="s1">去拼购</div>';
+//																						content +='<div class="s2">'+item.couponmoney+'元</div>';
+																						content +='<div class="s3" style="background: #ff5d45;">立即购买</div>';
+																					}
+																					content +='</div>';
+																			content +='</div>';
+																	content +='</a>';
+															content +='</div>';
+													content +='</li>';
+										
+			                        });
+	                                 $("#list").append(content);
+	                                
+	                                console.log(page);
+			                        next(lis.join(''),page<item.pages);
+			                    });
+			                }
+			            });
+						//按屏加载图片
+						flow.lazyimg({
+							elem: '#table img'
+							//,scrollElem: '#LAY_demo3' //一般不用设置，此处只是演示需要。
+						});
+			        });
+			    }();
+			</script>
+		<script src="{$_W['siteroot']}addons/tiger_newhu/template/mobile/tbgoods/style9/js/jweixin-1.0.0.js"></script>
+	<script>
+		
+		var key="{$_GPC['key']}";
+		var fxtitle="拼多多爆款商品";
+		var desc="拼多多爆款商品";
+		
+		var imgUrl="{php echo tomedia($cfg['fxpicurl'])}";
+		var fxlink=window.location.href;
+		var fxdata={"title":fxtitle,"imgUrl":imgUrl,"desc":desc,"link":fxlink};
+	        var appid = "{$_W['account']['jssdkconfig']['appId']}";
+	        var timestamp = "{$_W['account']['jssdkconfig']['timestamp']}";
+	        var nonceStr = "{$_W['account']['jssdkconfig']['nonceStr']}";
+	        var signature = "{$_W['account']['jssdkconfig']['signature']}";
+	        wx.config({
+	            debug: false,
+	            appId: appid,
+	            timestamp: timestamp,
+	            nonceStr: nonceStr,
+	            signature: signature,
+	            jsApiList: [
+	                "onMenuShareAppMessage",
+	                "onMenuShareTimeline",
+	                "chooseImage",
+	                "uploadImage",
+	                "downloadImage"
+	            ]
+	        });
+	
+		wx.ready(function(){
+			wx.onMenuShareAppMessage({
+				title: fxdata['title'],
+				desc: fxdata['desc'],
+				link: fxdata['fxlink'],
+				imgUrl: fxdata['imgUrl']
+			}); 
+			wx.onMenuShareTimeline({
+				title: fxdata['title'],
+				desc: fxdata['desc'],
+				link: fxdata['fxlink'],
+				imgUrl: fxdata['imgUrl']
+			});
+		});
+	
+	    </script>	
+	    <script>
+	    	//浮动菜单
+// $(function() {
+// 	$(window).scroll(function() {
+// 			//如果滚轮向下滚了
+// 			if($(document).scrollTop() > 180){
+// 				$(".slot-tabs").addClass("fix-top");// fix-top
+// 			}else{
+// 				$(".slot-tabs").removeClass("fix-top");// fix-top
+// 			}
+// 		
+// 	});
+// });
+	    </script>
+</body>
+</html>

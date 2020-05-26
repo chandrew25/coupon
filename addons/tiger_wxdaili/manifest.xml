@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns="https://www.huzhan.com/ishop31919/code/" versionCode="0.8,1.0">
+	<application setting="true">
+		<name><![CDATA[微信淘宝客【代理系统】]]></name>
+		<identifie><![CDATA[tiger_wxdaili]]></identifie>
+		<version><![CDATA[2.99.84]]></version>
+		<type><![CDATA[activity]]></type>
+		<ability><![CDATA[微信淘宝客【代理系统】]]></ability>
+		<description><![CDATA[微信淘宝客【代理系统】]]></description>
+		<author><![CDATA[创心团队]]></author>
+		<url><![CDATA[https://www.huzhan.com/ishop31919/code/]]></url>
+	</application>
+	<platform>
+		<subscribes>
+		</subscribes>
+		<handles>
+			<message type="image" />
+			<message type="voice" />
+			<message type="video" />
+			<message type="shortvideo" />
+			<message type="location" />
+			<message type="link" />
+			<message type="subscribe" />
+			<message type="qr" />
+			<message type="trace" />
+			<message type="click" />
+			<message type="merchant_order" />
+			<message type="text" />
+		</handles>
+		<rule embed="true" />
+		<card embed="false" />
+        <supports>
+			<item type="app" />
+			<item type="account" />
+        </supports>
+	</platform>
+	<bindings>
+		<cover>
+			<entry title="搜索入口" do="search" state="" direct="false" />
+			<entry title="代理选品库" do="xpk" state="" direct="false" />
+			<entry title="代理申请入口" do="dlreg" state="" direct="false" />
+			<entry title="新代理入口" do="user" state="" direct="false" />
+		</cover>
+		<menu>
+			<entry title="提现审核" do="dltxsh" state="" direct="false" />
+			<entry title="代理支付管理" do="order" state="" direct="false" />
+			<entry title="代理管理" do="dlmember" state="" direct="false" />
+			<entry title="加群管理" do="qungl" state="" direct="false" />
+			<entry title="基础设置" do="dlset" state="" direct="false" />
+			<entry title="PC网站广告" do="ad" state="" direct="false" />
+			<entry title="佣金结算记录" do="yjlog" state="" direct="false" />
+			<entry title="手动结算" do="searchyj" state="" direct="false" />
+			<entry title="拼多多PID管理" do="pddpidlist" state="" direct="false" />
+			<entry title="京东推广位管理" do="jdpidlist" state="" direct="false" />
+			<entry title="淘宝PID管理" do="tbpidlist" state="" direct="false" />
+			<entry title="批量佣金管理" do="plyjlist" state="" direct="false" />
+			<entry title="渠道ID管理" do="qudaoidlist" state="" direct="false" />
+			<entry title="团长佣金管理" do="tzyjlist" state="" direct="false" />
+		</menu>
+	</bindings>
+	<permissions>
+	</permissions>
+	<install><![CDATA[install.php]]></install>
+	<uninstall><![CDATA[uninstall.php]]></uninstall>
+	<upgrade><![CDATA[upgrade.php]]></upgrade>
+</manifest>

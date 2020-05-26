@@ -1,0 +1,189 @@
+
+		{template 'public_head'}
+		<!--中间内容开始-->
+		<section>
+		    <section class="hbox stretch">
+		    {template 'public_left'}
+		    <!--右边框架-->
+			  <section id="content">
+			    <section class="vbox">
+			        <section class="scrollable padder"  style="padding-bottom:50px;">
+                        <ul class="breadcrumb no-border no-radius b-b b-light pull-in">
+                          <li><a href="{php echo $this->createWebUrl('index')}"><i class="fa fa-home"></i> 首页  </a></li>
+                          <li class="active">合伙人等级</li>
+                        </ul>
+			            <!--编辑内容-->
+
+<!--a onclick="return confirm('确定后请不要关闭页面，直到优化完毕！')" href='{php echo $this->createWebUrl("memberzh")}' class='btn btn-danger btn-sm'>数据优化（适应新系统）</a-->
+<div style="padding-bottom:15px;height:40px;">
+<a href='#modal-form' class='btn btn-info btn-sm' data-toggle="modal" style="float: right;"><i class="fa fa-plus"></i> 添加新等级</a>
+</div>
+
+<!--添加新等级-->
+    <div class="modal fade" id="modal-form">
+        	<div class="modal-dialog">
+		        <div class="modal-content">
+		            <div class="modal-header">
+		                <button data-dismiss="modal" class="close" type="button">×</button>
+		                <h4 class="modal-title">编辑合伙人等级</h4>
+		            </div>
+		            <div class="modal-body">
+		            	<form action="" method="post" class="form-horizontal form-validate" enctype="multipart/form-data" novalidate="novalidate">
+			                <div class="form-group">
+			                    <label class="col-sm-2 control-label must">等级名称</label>
+			                    <div class="col-sm-9 col-xs-12">
+									<input type="text" name="levelname" class="form-control" value="" data-rule-required="true" aria-required="true">
+			                    </div>
+			                </div>
+			                <div class="form-group">
+						            <label class="col-xs-12 col-sm-3 col-md-2 control-label">奖励类型</label>
+						            <div class="col-xs-12 col-sm-9">
+						                <label class="radio-inline"><input type="radio" name="cqtype" value="1" 
+						                 {if $item['cqtype']==1} checked="checked" {/if}>固定奖励</label>
+						                <label class="radio-inline"><input type="radio" name="cqtype" value="2"
+						                 {if $item['cqtype']==2} checked="checked" {/if}>比例</label>
+						                  <span class="help-block">固定奖励：固定金额如0.1元，比例 ：佣金的%比</span>
+						            </div>
+						     </div>
+			                <div class="form-group">
+			                    <label class="col-sm-2 control-label">一级佣金比例</label>
+			                    <div class="col-sm-9 col-xs-12">
+									<div class="input-group">
+			                        	<input type="text" name="commission1" class="form-control valid" value="" aria-invalid="false">
+			                            <div class="input-group-addon">元/%</div>
+			                        </div>
+			                	</div>
+			          		</div>
+			          		<div class="form-group">
+			                    <label class="col-sm-2 control-label">二级佣金比例</label>
+			                    <div class="col-sm-9 col-xs-12">
+									<div class="input-group">
+			                        	<input type="text" name="commission1" class="form-control valid" value="" aria-invalid="false">
+			                            <div class="input-group-addon">元/%</div>
+			                        </div>
+			                	</div>
+			          		</div>  
+			                <div class="form-group">
+			                    <label class="col-sm-2 control-label">升级条件</label>
+			                    <div class="col-sm-9 col-xs-12">
+			                    		<label class="radio-inline"><input type="radio" name="cqtype" value="1" 
+						                 {if $item['cqtype']==1} checked="checked" {/if}>推荐满多少个粉丝</label>
+						                <label class="radio-inline"><input type="radio" name="cqtype" value="2"
+						                 {if $item['cqtype']==2} checked="checked" {/if}>付费升级</label>
+						                  <span class="help-block"></span>
+										<div class="input-group">											
+											<input type="text" name="ordermoney" class="form-control" value="">
+											<span class="input-group-addon">个/元</span>
+					                    </div>
+			                    		<span class="help-block">如果达到上面的要求，自动升级到这个等级的合伙人</span>
+								</div>
+			                </div>  
+			                <div class="form-group">
+			                    <label class="col-sm-2 control-label">时长</label>
+			                    <div class="col-sm-9 col-xs-12">
+									<div class="input-group">
+			                        	<input type="text" name="commission1" class="form-control valid" value="" aria-invalid="false">
+			                            <div class="input-group-addon">月</div>
+			                        </div>
+			                        <span class="help-block">申请时开始加上几个月，几个月后恢复到普通会员</span>
+			                	</div>
+			          		</div>  
+			                
+			            </div>
+			            <div class="modal-footer">
+			                <button class="btn btn-primary" type="submit">提交</button>
+			                <button data-dismiss="modal" class="btn btn-default" type="button">取消</button>
+			            </div>
+		            </form>
+		        </div>		
+			</div>
+		            <!-- /.modal-content panel-default-->
+		<!-- /.modal-dialog -->
+    </div>
+<style>
+	.form-horizontal .control-label{padding-right: 10px;}
+</style>
+<!--添加新待级结束-->
+
+
+
+                <div class="panel panel-default">
+
+                    <div class="panel-body" style="text-align: center;">
+
+                        <table class="table table-hover">
+
+                            <thead class="navbar-inner">
+                                <tr>
+                                    <th width="200">等级名称</th>		
+                                    <th width="120">一级佣金</th>
+                                    <th width="100">二级佣金</th>
+                                    <th width="400">升级条件</th>                                   
+                                    <th style="width: 250px;">操作</th>
+                                </tr>
+                            </thead>
+<form action="{php echo $this->createWebUrl('share',array('op'=>'display'))}" method="post" class="form-horizontal" id="form1">
+                            <tbody id="table_content">
+
+			                    <tr rel="pop" title="">
+				                    <td>普通会员</td>                    
+				                    <td>50%</td>
+				                    <td>20%</td>
+				                    <td>默认等级</td>
+				                    <td>
+				                    	<a href='{php echo $this->createWebUrl("memberedit",array("id"=>$l["id"]))}' class='btn btn-info btn-sm'>编辑</a>
+				                    	<a onclick="return confirm('删除后将无法恢复，确定删除吗？')" href='{php echo $this->createWebUrl("delete",array("sceneid"=>$l["sceneid"],"sid"=>$l["id"],"status"=>$status))}' class='btn btn-danger btn-sm'>删除</a>
+				                    </td>
+				                </tr>
+                            </tbody>
+
+                        </table>
+</form>
+                        {$pager}
+
+                    </div>
+
+                </div>
+                        <!--编辑内容结束-->
+			        </section>
+			        {template 'public_bottom'}
+			    </section>
+			    <a href="#" class="hide nav-off-screen-block" data-toggle="class:nav-off-screen" data-target="#nav"></a>
+			  </section>
+			  <aside class="bg-light lter b-l aside-md hide" id="notes">
+			       <div class="wrapper">不知道放什么</div>
+			  </aside>
+			<!--右边框架结束-->
+			</section>
+		  </section>
+		<!--中间内容结束-->
+	</section>
+
+<script language="javascript">
+		require(['bootstrap'],function(){
+        $("[rel=pop]").popover({
+            trigger:'manual',
+            placement : 'top', 
+            title : $(this).data('title'),
+            html: 'true', 
+            content : $(this).data('content'),
+            animation: false
+        }).on("mouseenter", function () {
+                    var _this = this;
+                    $(this).popover("show"); 
+                    $(this).siblings(".popover").on("mouseleave", function () {
+                        $(_this).popover('hide');
+                    });
+                }).on("mouseleave", function () {
+                    var _this = this;
+                    setTimeout(function () {
+                        if (!$(".popover:hover").length) {
+                            $(_this).popover("hide")
+                        }
+                    }, 100);
+                });
+	   });
+				   
+</script>
+</body>
+</html>
